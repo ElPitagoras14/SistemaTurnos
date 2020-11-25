@@ -6,7 +6,6 @@
 package MediaPlayer;
 
 import TDAs.CircularLinkedList;
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.media.*;
@@ -17,15 +16,23 @@ import javafx.util.Duration;
  * @author El Pitagoras
  */
 public class VideoPlayer {
-    private CircularLinkedList<IVideo> listaVideo;
-    private MediaPlayer reproductor;
-    private MediaView ventanaVideo;
-        
-    public VideoPlayer() {
+    private static VideoPlayer instance;
+    private static CircularLinkedList<IVideo> listaVideo;
+    private static MediaPlayer reproductor;
+    private static MediaView ventanaVideo;
+    
+    private VideoPlayer() {
         listaVideo = new CircularLinkedList<>();
         ventanaVideo = new MediaView();
         ingresarVideos();
         siguienteVideo();
+    }
+    
+    public static VideoPlayer getInstance() {
+        if (instance == null) {
+            instance = new VideoPlayer();
+        }
+        return instance;
     }
     
     private void ingresarVideos() {

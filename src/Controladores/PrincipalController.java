@@ -33,16 +33,16 @@ public class PrincipalController implements Initializable {
    @FXML
    private AnchorPane root;
    
-   //VideoPlayer reproductor = new VideoPlayer();
+   VideoPlayer reproductor = VideoPlayer.getInstance();
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        //reproductor.getVentanaVideo().setFitHeight(200);
-        //reproductor.getVentanaVideo().setFitWidth(300);
+        reproductor.getVentanaVideo().setFitHeight(200);
+        reproductor.getVentanaVideo().setFitWidth(300);
 
-        //root.getChildren().add(reproductor.getVentanaVideo());
+        root.getChildren().add(reproductor.getVentanaVideo());
     }
     
     @FXML
