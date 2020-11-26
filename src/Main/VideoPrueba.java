@@ -21,7 +21,7 @@ public class VideoPrueba extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        VideoPlayer vd =  new VideoPlayer();
+        VideoPlayer vd =  VideoPlayer.getInstance();
         
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
