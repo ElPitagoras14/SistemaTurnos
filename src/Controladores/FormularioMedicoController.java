@@ -45,6 +45,9 @@ public class FormularioMedicoController implements Initializable{
     @FXML
     private TextField textEspecialidad;
     
+    @FXML
+    private TextField textId;
+    
     Serializar<Medico> serializar = new Serializar();
     LinkedList<Medico> listaDoc;
     /**
@@ -71,7 +74,7 @@ public class FormularioMedicoController implements Initializable{
             if(verificarCampos())
             {
                 if(verificarTexto(textNombre.getText()) && verificarTexto(textApellido.getText()) && verificarTexto(textEspecialidad.getText())){
-                   doc = new Medico(textNombre.getText(), textApellido.getText(), textEspecialidad.getText());
+                   doc = new Medico(textNombre.getText(), textApellido.getText(), textEspecialidad.getText(),textId.getText());
                    Serializar<Medico> serializar = new Serializar();
                    listaDoc.add(doc);
                    serializar.serializar(listaDoc, "Medicos.ser");
