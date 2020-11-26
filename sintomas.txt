@@ -1,0 +1,19 @@
+Fiebre|3
+Sangrado Nasal|1
+Resfrío|2
+Somnolencia|5
+Náuseas|2
+Convulsiones|0
+Tos|3
+Cansancio|5
+Diarrea|3
+Dolor de garganta|4
+Fatiga|5
+Migraña|2
+Estornudos|5
+Moqueo nasal|5
+Erupciones|3
+Dolor muscular|4
+Calambre|5
+Sangre al toser|0
+Verrugas|3

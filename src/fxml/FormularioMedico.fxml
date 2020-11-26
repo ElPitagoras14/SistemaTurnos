@@ -11,16 +11,16 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.FormularioMedicoController">
+<AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.FormularioMedicoController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutY="324.0" stroke="TRANSPARENT" strokeType="INSIDE" width="595.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="1.0" layoutY="361.0" stroke="TRANSPARENT" strokeType="INSIDE" width="595.0" />
       <Label layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="155.0" text="Médico">
          <font>
             <Font size="41.0" />
          </font>
       </Label>
       <Line endX="428.0" layoutX="167.0" layoutY="71.0" startX="-167.0" />
-      <GridPane layoutX="25.0" layoutY="96.0" prefHeight="172.0" prefWidth="546.0">
+      <GridPane layoutX="25.0" layoutY="96.0" prefHeight="201.0" prefWidth="546.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="174.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="430.0" />
@@ -29,6 +29,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="textNombre" GridPane.columnIndex="1" />
@@ -49,9 +50,15 @@
                   <Font size="23.0" />
                </font>
             </Label>
+            <Label text="ID" GridPane.rowIndex="3">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textId" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="btnAgregar" layoutX="509.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#agregarMedico" text="Agregar" />
-      <Button fx:id="btnCancelar" layoutX="417.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#atras" text="Cancelar" />
+      <Button fx:id="btnAgregar" layoutX="509.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#agregarMedico" text="Agregar" />
+      <Button fx:id="btnCancelar" layoutX="417.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#atras" text="Cancelar" />
    </children>
 </AnchorPane>

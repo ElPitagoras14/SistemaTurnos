@@ -3,12 +3,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "Controladores.PrincipalController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.PrincipalController">
    <children>
-      <Label layoutX="9.0" layoutY="361.0" prefHeight="28.0" prefWidth="584.0" style="-fx-background-color: #2980D5;" text="Horario de atención de Lunes a Viernes de 10 am a 17 pm" textFill="WHITE">
+      <Label layoutX="8.0" layoutY="415.0" prefHeight="28.0" prefWidth="584.0" style="-fx-background-color: #2980D5;" text="Horario de atención de Lunes a Viernes de 10 am a 17 pm" textFill="WHITE">
          <font>
             <Font size="22.0" />
          </font>
@@ -19,7 +23,33 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Button fx:id="formularioMedico" layoutX="489.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#crearMedico" text="Añadir Médico" />
-      <Button fx:id="formularioPaciente" layoutX="381.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#crearPaciente" text="Añadir Paciente" />
+      <Button fx:id="formularioMedico" layoutX="25.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#crearMedico" text="Añadir Médico" />
+      <Button fx:id="formularioPaciente" layoutX="152.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#crearPaciente" text="Añadir Paciente" />
+      <Label fx:id="hora" layoutX="501.0" layoutY="27.0" prefHeight="20.0" prefWidth="48.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <ScrollPane layoutX="327.0" layoutY="60.0" prefHeight="299.0" prefWidth="259.0" style="-fx-background-color: #157FDD;">
+         <content>
+            <HBox prefHeight="294.0" prefWidth="254.0">
+               <children>
+                  <VBox fx:id="Vbturno" prefHeight="294.0" prefWidth="130.0">
+                     <children>
+                        <Label text="Turno" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="Vbpuesto" prefHeight="294.0" prefWidth="125.0">
+                     <children>
+                        <Label text="Puesto" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content></ScrollPane>
+      <Button fx:id="btnPuesto" layoutX="497.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#crearPuesto" text="Crear Puesto" />
    </children>
 </AnchorPane>

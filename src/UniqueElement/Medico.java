@@ -15,12 +15,22 @@ public class Medico implements Serializable{
     private String nombre;
     private String apellido;
     private String especialidad;
+    private String id;
     private static final long serialVersionUID = 123455L;
 
-    public Medico(String nombre, String apellido, String especialidad) {
+    public Medico(String nombre, String apellido, String especialidad, String id) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -46,4 +56,10 @@ public class Medico implements Serializable{
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }    
+    
+    @Override
+    public String toString()
+    {
+        return nombre+" "+ apellido+" id:"+id;
+    }
 }
