@@ -21,8 +21,8 @@ public class Video implements IVideo {
         this.nombre = nombre;
         generarMedia();
     }
-    
-    private void generarMedia(){
+
+    private void generarMedia() {
         File fi = new File(nombre);
         videoFX = new Media(fi.toURI().toString());
     }

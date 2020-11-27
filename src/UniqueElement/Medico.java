@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author El Pitagoras
  */
-public class Medico implements Serializable{
+public class Medico implements Serializable {
+
     private String nombre;
     private String apellido;
     private String especialidad;
@@ -55,11 +56,10 @@ public class Medico implements Serializable{
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
-    }    
-    
+    }
+
     @Override
-    public String toString()
-    {
-        return nombre+" "+ apellido+" id:"+id;
+    public String toString() {
+        return nombre + " " + apellido + " id:" + id;
     }
 }

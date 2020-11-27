@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author El Pitagoras
  */
-public class Paciente implements Serializable{
+public class Paciente implements Serializable {
+
     private String nombre;
     private String apellido;
     private String edad;

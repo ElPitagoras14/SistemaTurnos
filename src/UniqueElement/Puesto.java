@@ -12,7 +12,8 @@ import java.util.Objects;
  *
  * @author El Pitagoras
  */
-public class Puesto  implements Serializable{
+public class Puesto implements Serializable {
+
     private String idPuesto;
     private boolean ocupado;
     private Medico medicoA;
@@ -54,7 +55,7 @@ public class Puesto  implements Serializable{
     }
 
     public static void anadirPuesto(Puesto p) {
-        
+
     }
 
     @Override
@@ -64,9 +65,10 @@ public class Puesto  implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) 
+        if (this == obj) {
             return true;
-        
+        }
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
@@ -78,7 +80,7 @@ public class Puesto  implements Serializable{
     }
 
     public void eliminarPuesto() {
-       
+
     }
 
     public void anadirMedico(String ced) {

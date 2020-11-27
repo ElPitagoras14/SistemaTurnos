@@ -12,6 +12,8 @@ import javafx.scene.media.Media;
  * @author El Pitagoras
  */
 public interface IVideo {
+
     String getPath();
+
     Media getVideoMedia();
 }
