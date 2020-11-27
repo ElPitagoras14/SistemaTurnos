@@ -53,7 +53,7 @@ public class PrincipalController implements Initializable {
    @FXML
    private Button btnPuesto;
    
-   //VideoPlayer reproductor = VideoPlayer.getInstance();
+   VideoPlayer reproductor = VideoPlayer.getInstance();
 
 
     @Override
@@ -67,12 +67,12 @@ public class PrincipalController implements Initializable {
             hora.setText(Hora +":"+minutos);
         
         llenarPuesto("Puestos.ser");
-        //reproductor.getVentanaVideo().setX(10);
-        //reproductor.getVentanaVideo().setY(10);
-        //reproductor.getVentanaVideo().setFitHeight(200);
-        //reproductor.getVentanaVideo().setFitWidth(300);
+        reproductor.getVentanaVideo().setX(10);
+        reproductor.getVentanaVideo().setY(10);
+        reproductor.getVentanaVideo().setFitHeight(200);
+        reproductor.getVentanaVideo().setFitWidth(300);
 
-        //root.getChildren().add(reproductor.getVentanaVideo());
+        root.getChildren().add(reproductor.getVentanaVideo());
     }
     
     @FXML

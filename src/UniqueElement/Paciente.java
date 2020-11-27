@@ -16,10 +16,10 @@ public class Paciente implements Serializable{
     private String apellido;
     private String edad;
     private String genero;
-    private String sintoma;
+    private Sintoma sintoma;
     private static final long serialVersionUID = 123L;
 
-    public Paciente(String nombre, String apellido, String edad, String genero, String sintoma) {
+    public Paciente(String nombre, String apellido, String edad, String genero, Sintoma sintoma) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -59,13 +59,12 @@ public class Paciente implements Serializable{
         this.genero = genero;
     }
 
-    public String getSintoma() {
+    public Sintoma getSintoma() {
         return sintoma;
     }
 
-    public void setSintoma(String sintoma) {
+    public void setSintoma(Sintoma sintoma) {
         this.sintoma = sintoma;
     }
-    
-    
+
 }

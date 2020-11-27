@@ -17,9 +17,9 @@ import javafx.util.Duration;
  */
 public class VideoPlayer {
     private static VideoPlayer instance;
-    private static CircularLinkedList<IVideo> listaVideo;
-    private static MediaPlayer reproductor;
-    private static MediaView ventanaVideo;
+    private CircularLinkedList<IVideo> listaVideo;
+    private MediaPlayer reproductor;
+    private MediaView ventanaVideo;
     
     private VideoPlayer() {
         listaVideo = new CircularLinkedList<>();

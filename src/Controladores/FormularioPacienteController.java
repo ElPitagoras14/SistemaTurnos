@@ -23,9 +23,7 @@ import javafx.scene.input.MouseEvent;
 import Main.App;
 import UniqueElement.Paciente;
 import UniqueElement.Sintoma;
-import java.io.File;
 import java.util.LinkedList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
@@ -88,9 +86,11 @@ public class FormularioPacienteController  implements Initializable{
                 throw new fieldException("Por favor ingrese datos válidos");
             }
             
+            /*
             Paciente paciente = new Paciente(textNombre.getText(),textApellido.getText(),textEdad.getText(),cmbGenero.getValue().toString(),cmbSintoma.getValue().toString());
             listaPaciente.add(paciente);
             serializar.serializar(listaPaciente, "Paciente.ser");
+            */
             Alert a = new Alert(Alert.AlertType.INFORMATION,"Se ha registrado un paciente");
             a.show();
             App.llamarEscena("principal", (Event)e);
