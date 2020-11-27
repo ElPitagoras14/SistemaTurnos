@@ -14,14 +14,14 @@ import java.util.Scanner;
  * @author GeovannyRojas
  */
 public class Sintoma {
+
     private String nombre;
     private int prioridad;
-    
-    public Sintoma(String nombre, int prioridad)
-    {
+
+    public Sintoma(String nombre, int prioridad) {
         this.nombre = nombre;
         this.prioridad = prioridad;
-        
+
     }
 
     public String getNombre() {
@@ -39,25 +39,23 @@ public class Sintoma {
     public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
-    
-    public static ArrayList<Sintoma> llenarSintoma()
-    {
+
+    public static ArrayList<Sintoma> llenarSintoma() {
         ArrayList<Sintoma> sintomas = new ArrayList<>();
-         try (Scanner sc = new Scanner(new File("sintomas.txt"))) {
+        try (Scanner sc = new Scanner(new File("sintomas.txt"))) {
             while (sc.hasNextLine()) {
                 String[] id = sc.nextLine().split("\\|");
-                Sintoma sin = new Sintoma(id[0],Integer.parseInt(id[1]));
+                Sintoma sin = new Sintoma(id[0], Integer.parseInt(id[1]));
                 sintomas.add(sin);
             }
         } catch (Exception e) {
         }
-         
-         return sintomas;
+
+        return sintomas;
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return nombre;
     }
 }

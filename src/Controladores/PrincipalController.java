@@ -22,12 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
 
 /**
  *
@@ -35,83 +31,81 @@ import javafx.scene.shape.Rectangle;
  */
 public class PrincipalController implements Initializable {
 
-   @FXML
-   private Button formularioMedico;
-   
-   @FXML
-   private Button formularioPaciente;
-   
-   @FXML
-   private Label hora;
-   
-   @FXML
-   private AnchorPane root;
-   
-   @FXML
-   private VBox Vbturno,Vbpuesto;
-   
-   @FXML
-   private Button btnPuesto;
-   
-   //VideoPlayer reproductor = VideoPlayer.getInstance();
+    @FXML
+    private Button formularioMedico;
 
+    @FXML
+    private Button formularioPaciente;
+
+    @FXML
+    private Label hora;
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private VBox Vbturno, Vbpuesto;
+
+    @FXML
+    private Button btnPuesto;
+
+    VideoPlayer reproductor = VideoPlayer.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Calendar calendario = Calendar.getInstance();
         int Hora = calendario.get(Calendar.HOUR_OF_DAY);
         int minutos = calendario.get(Calendar.MINUTE);
-        if(minutos<10)
-            hora.setText(Hora +":0"+minutos);
-        else
-            hora.setText(Hora +":"+minutos);
-        
-        llenarPuesto("Puestos.ser");
-        //reproductor.getVentanaVideo().setX(10);
-        //reproductor.getVentanaVideo().setY(10);
-        //reproductor.getVentanaVideo().setFitHeight(200);
-        //reproductor.getVentanaVideo().setFitWidth(300);
+        if (minutos < 10) {
+            hora.setText(Hora + ":0" + minutos);
+        } else {
+            hora.setText(Hora + ":" + minutos);
+        }
 
-        //root.getChildren().add(reproductor.getVentanaVideo());
+        llenarPuesto("Puestos.ser");
+        reproductor.getVentanaVideo().setX(10);
+        reproductor.getVentanaVideo().setY(10);
+        reproductor.getVentanaVideo().setFitHeight(200);
+        reproductor.getVentanaVideo().setFitWidth(300);
+
+        root.getChildren().add(reproductor.getVentanaVideo());
     }
-    
+
     @FXML
-    private void crearPaciente(MouseEvent e) 
-    {
-       try {
-           App.llamarEscena("FormularioPaciente", (Event) e);
-       } catch (IOException ex) {
-           ex.printStackTrace();
-       }
+    private void crearPaciente(MouseEvent e) {
+        try {
+            reproductor.cambiarVentana();
+            App.llamarEscena("FormularioPaciente", (Event) e);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-    
+
     @FXML
-    private void crearMedico(MouseEvent e) 
-    {
-       try {
-            App.llamarEscena("FormularioMedico", (Event)e);
-       } catch (IOException ex) {
-           ex.printStackTrace();
-       }
+    private void crearMedico(MouseEvent e) {
+        try {
+            reproductor.cambiarVentana();
+            App.llamarEscena("FormularioMedico", (Event) e);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-    
+
     @FXML
-    private void crearPuesto(MouseEvent e)
-    {
-       try {
-           App.llamarEscena("Puesto",(Event)e);
-       } catch (IOException ex) {
-           Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+    private void crearPuesto(MouseEvent e) {
+        try {
+            reproductor.cambiarVentana();
+            App.llamarEscena("Puesto", (Event) e);
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    
-    private void llenarPuesto(String Archivo)
-    {
+
+    private void llenarPuesto(String Archivo) {
         Serializar<Puesto> p = new Serializar();
         LinkedList<Puesto> listap = p.deserializar(Archivo);
         for (int i = 0; i < listap.size(); i++) {
-            Label turnos = new Label("A"+i);
+            Label turnos = new Label("A" + i);
             Puesto cola = listap.get(i);
             Vbturno.getChildren().add(turnos);
             Label puesto = new Label(cola.getIdPuesto());
@@ -119,5 +113,4 @@ public class PrincipalController implements Initializable {
         }
     }
 
-   
 }

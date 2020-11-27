@@ -5,31 +5,15 @@
  */
 package UniqueElement;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author El Pitagoras
  */
-public class Puesto  implements Serializable{
+public class Puesto implements Serializable {
+
     private String idPuesto;
     private boolean ocupado;
     private Medico medicoA;
@@ -71,7 +55,7 @@ public class Puesto  implements Serializable{
     }
 
     public static void anadirPuesto(Puesto p) {
-        
+
     }
 
     @Override
@@ -81,9 +65,10 @@ public class Puesto  implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) 
+        if (this == obj) {
             return true;
-        
+        }
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
@@ -95,7 +80,7 @@ public class Puesto  implements Serializable{
     }
 
     public void eliminarPuesto() {
-       
+
     }
 
     public void anadirMedico(String ced) {

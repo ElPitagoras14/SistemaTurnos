@@ -16,69 +16,84 @@ import javafx.util.Duration;
  * @author El Pitagoras
  */
 public class VideoPlayer {
+
     private static VideoPlayer instance;
-    private static CircularLinkedList<IVideo> listaVideo;
-    private static MediaPlayer reproductor;
-    private static MediaView ventanaVideo;
-    
+    private CircularLinkedList<IVideo> listaVideo;
+    private MediaPlayer reproductor;
+    private MediaView ventanaVideo;
+    private boolean ejecutar;
+
     private VideoPlayer() {
         listaVideo = new CircularLinkedList<>();
         ventanaVideo = new MediaView();
+        ejecutar = true;
         ingresarVideos();
         siguienteVideo();
     }
-    
+
     public static VideoPlayer getInstance() {
         if (instance == null) {
             instance = new VideoPlayer();
         }
         return instance;
     }
-    
+
     private void ingresarVideos() {
         listaVideo.addLast(new Video("gato.mp4"));
-        listaVideo.addLast(new Video("inferno.mp4"));
         listaVideo.addLast(new Video("heladero.mp4"));
+        listaVideo.addLast(new Video("inferno.mp4"));
+
     }
-    
+
     private void siguienteVideo() {
+        ejecutar = false;
         reproductor = new MediaPlayer(listaVideo.recorrerLlamada().getVideoMedia());
         ventanaVideo.setMediaPlayer(reproductor);
         reproducir();
     }
-    
-    private void reproducir() {
+
+    public void reproducir() {
+        ejecutar = true;
         Thread hilo = new Thread(new HiloVideo());
         hilo.start();
     }
-    
+
+    public void cambiarVentana() {
+        ejecutar = false;
+        reproductor.pause();
+    }
+
     public MediaView getVentanaVideo() {
         return ventanaVideo;
     }
-        
+
     private class HiloVideo implements Runnable {
-        
+
         Duration tiempoActual;
         Duration tiempoTotal;
-        
+
         public HiloVideo() {
             tiempoActual = Duration.ZERO;
         }
-        
+
         @Override
         public void run() {
             try {
                 reproductor.play();
                 Thread.sleep(1000);
                 tiempoTotal = reproductor.getTotalDuration();
-                while(!tiempoActual.equals(tiempoTotal)) {
+                while (!tiempoActual.equals(tiempoTotal) && ejecutar) {
                     tiempoActual = reproductor.getCurrentTime();
                 }
-                siguienteVideo();
+                if (ejecutar) {
+                    System.out.println("Cambio video");
+                    siguienteVideo();
+                }
             } catch (InterruptedException ex) {
                 Logger.getLogger(VideoPlayer.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println("Cierro Hilo");
         }
-        
+
     }
 }

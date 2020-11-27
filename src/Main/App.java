@@ -38,16 +38,15 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        File f = new File("src/fxml/"+fxml + ".fxml");
+        File f = new File("src/fxml/" + fxml + ".fxml");
         return FXMLLoader.load(f.toURI().toURL());
     }
 
     public static void main(String[] args) {
         launch();
     }
-    
-     public static void llamarEscena(String fxml,Event event) throws IOException
-    {
+
+    public static void llamarEscena(String fxml, Event event) throws IOException {
         Parent root = loadFXML(fxml);
         Scene scene = new Scene(root);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

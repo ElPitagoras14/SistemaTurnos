@@ -7,11 +7,11 @@ package Controladores;
 
 import FileResources.Serializar;
 import Main.App;
+import MediaPlayer.VideoPlayer;
 import UniqueElement.Medico;
 import UniqueElement.Puesto;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -43,10 +43,10 @@ public class PuestoController implements Initializable {
     private TextField textId;
     @FXML
     private ComboBox cmbMedico;
-    
+
     @FXML
     private Button btnAtras;
-    
+
     Serializar<Puesto> puestos = new Serializar();
     Serializar<Medico> medicos = new Serializar();
 
@@ -57,19 +57,20 @@ public class PuestoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         LinkedList<Medico> listamedicos = medicos.deserializar("Medicos.ser");
         cmbMedico.setItems(FXCollections.observableList(listamedicos));
-    }    
+    }
 
     @FXML
     private void crearPuesto(MouseEvent event) {
         try {
             Puesto p;
-            if(!textId.getText().equals("") && !cmbMedico.getValue().toString().equals("")){
-                p = new Puesto(textId.getText(),(Medico)cmbMedico.getValue());
+            if (!textId.getText().equals("") && !cmbMedico.getValue().toString().equals("")) {
+                p = new Puesto(textId.getText(), (Medico) cmbMedico.getValue());
                 LinkedList<Puesto> listap = puestos.deserializar("Puestos.ser");
                 listap.add(p);
-                puestos.serializar(listap,"Puestos.ser");
+                puestos.serializar(listap, "Puestos.ser");
             }
-            App.llamarEscena("principal", (Event)event);
+            VideoPlayer.getInstance().reproducir();
+            App.llamarEscena("principal", (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,18 +79,18 @@ public class PuestoController implements Initializable {
     @FXML
     private void eliminarPuesto(MouseEvent event) {
     }
-    
+
     @FXML
-    private void volver(MouseEvent event)
-    {
+    private void volver(MouseEvent event) {
         Alert salida = new Alert(Alert.AlertType.CONFIRMATION);
         salida.setTitle("Confirmacion de Salida");
         salida.setContentText("Esta seguro que desea salir?");
 
         Optional<ButtonType> result = salida.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            try{
-                App.llamarEscena("principal", (Event)event);
+            try {
+                VideoPlayer.getInstance().reproducir();
+                App.llamarEscena("principal", (Event) event);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
