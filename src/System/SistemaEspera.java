@@ -24,6 +24,7 @@ public class SistemaEspera {
     private SistemaEspera() {
         colaPaciente = new PriorityQueue<>((Paciente p1, Paciente p2) -> p2.getSintoma().getPrioridad() - p1.getSintoma().getPrioridad());
         colaPuestoDisponible = new LinkedList<>();
+        
     }
 
     public void añadirPaciente(Paciente paciente) {

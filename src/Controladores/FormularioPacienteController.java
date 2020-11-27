@@ -83,15 +83,14 @@ public class FormularioPacienteController implements Initializable {
 
             } else if (!verificarTexto(textNombre.getText())
                     || !verificarTexto(textApellido.getText())
-                    || verificarNumero(textEdad.getText())) {
+                    || !verificarNumero(textEdad.getText())) {
                 throw new fieldException("Por favor ingrese datos válidos");
             }
 
-            /*
-            Paciente paciente = new Paciente(textNombre.getText(),textApellido.getText(),textEdad.getText(),cmbGenero.getValue().toString(),cmbSintoma.getValue().toString());
+            Paciente paciente = new Paciente(textNombre.getText(),textApellido.getText(),textEdad.getText(),cmbGenero.getValue().toString(),(Sintoma) cmbSintoma.getValue());
             listaPaciente.add(paciente);
             serializar.serializar(listaPaciente, "Paciente.ser");
-             */
+         
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Se ha registrado un paciente");
             a.show();
             VideoPlayer.getInstance().reproducir();

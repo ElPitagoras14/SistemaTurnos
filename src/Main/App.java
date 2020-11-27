@@ -5,6 +5,11 @@
  */
 package Main;
 
+import System.SistemaEspera;
+import UniqueElement.Medico;
+import UniqueElement.Paciente;
+import UniqueElement.Puesto;
+import UniqueElement.Sintoma;
 import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +30,11 @@ import javafx.scene.Node;
 public class App extends Application {
 
     private static Scene scene;
+    
+    @Override
+    public void init(){
+        inicializarDatos();
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -53,5 +63,17 @@ public class App extends Application {
         appStage.setScene(scene);
         appStage.toFront();
         appStage.show();
+    }
+    
+    private void inicializarDatos() {
+        SistemaEspera instancia = SistemaEspera.getInstance();
+        instancia.añadirPaciente(new Paciente("Jose", "Alvarez", "25", "Masculino", new Sintoma("Fiebre", 3)));
+        instancia.añadirPaciente(new Paciente("Juan", "Garcia", "30", "Masculino", new Sintoma("Sangrado Nasal", 1)));
+        instancia.añadirPaciente(new Paciente("Maria", "Flores", "18", "Femenino", new Sintoma("Erupciones", 3)));
+        instancia.añadirPaciente(new Paciente("Carla", "Alvarez", "25", "Femenino", new Sintoma("Calambre", 5)));
+        
+        instancia.añadirPuesto(new Puesto("001", new Medico("Carlos", "Arellano", "Medicina General", "001")));
+        instancia.añadirPuesto(new Puesto("002", new Medico("Armando", "Paredes", "Traumatologo", "002")));
+        
     }
 }
