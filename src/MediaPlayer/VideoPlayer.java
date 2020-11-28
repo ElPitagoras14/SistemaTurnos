@@ -86,7 +86,7 @@ public class VideoPlayer {
                     tiempoActual = reproductor.getCurrentTime();
                 }
                 if (ejecutar) {
-                    System.out.println("Cambio video");
+                    Logger.getLogger(VideoPlayer.class.getName()).log(Level.SEVERE,"Cambio Video");
                     siguienteVideo();
                 }
             } catch (InterruptedException ex) {

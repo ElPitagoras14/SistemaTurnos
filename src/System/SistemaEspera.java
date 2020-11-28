@@ -6,11 +6,12 @@
 package System;
 
 import FileResources.Serializar;
-import UniqueElement.Medico;
-import UniqueElement.Paciente;
-import UniqueElement.Puesto;
-import UniqueElement.Turno;
+import org.unique.Medico;
+import org.unique.Paciente;
+import org.unique.Puesto;
+import org.unique.Turno;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -57,7 +58,7 @@ public class SistemaEspera {
         serTurno.serializar(listaTurno, "Turno.ser");
     }
 
-    public void añadirPaciente(Paciente paciente) {
+    public void addPaciente(Paciente paciente) {
         colaPaciente.offer(paciente);
         historicoPaciente.add(paciente);
     }
@@ -77,7 +78,7 @@ public class SistemaEspera {
         }
     }
 
-    public LinkedList<Turno> getListaTurno() {
+    public List<Turno> getListaTurno() {
         return listaTurno;
     }
 
@@ -95,26 +96,26 @@ public class SistemaEspera {
         return instance;
     }
 
-    public LinkedList<Puesto> getListaPuesto() {
+    public List<Puesto> getListaPuesto() {
         return listaPuesto;
     }
 
-    public LinkedList<Medico> getListaMedico() {
+    public List<Medico> getListaMedico() {
         return listaMedico;
     }
 
-    public void añadirMedico(Medico m) {
+    public void addMedico(Medico m) {
         listaMedico.add(m);
     }
 
-    public void añadirPuesto(Puesto p) {
+    public void addPuesto(Puesto p) {
         listaPuesto.add(p);
         listaMedico.remove(p.getMedicoA());
     }
 
     public void asignarMedico(String id, Medico m) {
         Puesto p = obtenerPuesto(id);
-        if (!p.isOcupado() && !p.isAtendiendo() && !m.isAsignado()) {
+        if (p != null && !p.isOcupado() && !p.isAtendiendo() && !m.isAsignado()) {
             m.setAsignado(true);
             listaMedico.remove(m);
             p.setMedicoA(m);

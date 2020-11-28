@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package org.controladores;
 
-import FileResources.Serializar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,9 +22,8 @@ import javafx.scene.input.MouseEvent;
 import Main.App;
 import MediaPlayer.VideoPlayer;
 import System.SistemaEspera;
-import UniqueElement.Paciente;
-import UniqueElement.Sintoma;
-import java.util.LinkedList;
+import org.unique.Paciente;
+import org.unique.Sintoma;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
@@ -80,16 +78,16 @@ public class FormularioPacienteController implements Initializable {
             if (textNombre.getText().equals("") || textApellido.getText().equals("")
                     || textEdad.getText().equals("") || cmbSintoma.getValue().toString().equals("")
                     || cmbGenero.getValue().toString().equals("")) {
-                throw new fieldException("Es necesario llenas los espacios vacios");
+                throw new FieldException("Es necesario llenas los espacios vacios");
 
             } else if (!verificarTexto(textNombre.getText())
                     || !verificarTexto(textApellido.getText())
                     || !verificarNumero(textEdad.getText())) {
-                throw new fieldException("Por favor ingrese datos válidos");
+                throw new FieldException("Por favor ingrese datos válidos");
             }
 
             Paciente paciente = new Paciente(textNombre.getText(),textApellido.getText(),textEdad.getText(),cmbGenero.getValue().toString(),(Sintoma) cmbSintoma.getValue());
-            sistema.añadirPaciente(paciente);
+            sistema.addPaciente(paciente);
             sistema.actualizarTurnos();
             sistema.actualizarDatos();
          
@@ -97,7 +95,7 @@ public class FormularioPacienteController implements Initializable {
             a.show();
             VideoPlayer.getInstance().reproducir();
             App.llamarEscena("principal", (Event) e);
-        } catch (fieldException f) {
+        } catch (FieldException f) {
             Alert a = new Alert(Alert.AlertType.INFORMATION, f.getMessage());
             a.show();
         } catch (IOException ex) {
@@ -122,9 +120,9 @@ public class FormularioPacienteController implements Initializable {
         }
     }
 
-    class fieldException extends Exception {
+    class FieldException extends Exception {
 
-        public fieldException(String msg) {
+        public FieldException(String msg) {
             super(msg);
         }
     }

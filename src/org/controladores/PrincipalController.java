@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package org.controladores;
 
-import FileResources.Serializar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,10 +15,8 @@ import javafx.scene.input.MouseEvent;
 import Main.App;
 import MediaPlayer.VideoPlayer;
 import System.SistemaEspera;
-import UniqueElement.Puesto;
-import UniqueElement.Turno;
+import org.unique.Turno;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
@@ -115,7 +112,7 @@ public class PrincipalController implements Initializable {
             reproductor.cambiarVentana();
             App.llamarEscena("AtencionCiente", (Event) e);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

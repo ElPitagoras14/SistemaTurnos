@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package org.controladores;
 
 import Main.App;
 import MediaPlayer.VideoPlayer;
 import System.SistemaEspera;
-import UniqueElement.Medico;
-import UniqueElement.Puesto;
+import org.unique.Medico;
+import org.unique.Puesto;
 import java.io.IOException;
 import java.net.URL;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -52,14 +52,15 @@ public class PuestoController implements Initializable {
     private Button btnAtras;
 
     private SistemaEspera sistema;
-
+    
+    public static final String FXMLS = "Principal";
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sistema = SistemaEspera.getInstance();
-        LinkedList<Medico> listaMedicosDisponibles = sistema.getListaMedico();
+        List<Medico> listaMedicosDisponibles = sistema.getListaMedico();
         cmbMedico.setItems(FXCollections.observableList(listaMedicosDisponibles));
     }
 
@@ -69,18 +70,18 @@ public class PuestoController implements Initializable {
             Puesto p;
             if (!textId.getText().equals("")) {
                 if (cmbMedico.getValue() != null) {
-                    System.out.println("NO VACIO MEDICO");
+                    Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, "NO VACIO MEDICO");
                     Medico m = (Medico) cmbMedico.getValue();
                     p = new Puesto(textId.getText(), m);
                 } else{ 
                     p = new Puesto(textId.getText());
                 }
-                sistema.añadirPuesto(p);
+                sistema.addPuesto(p);
             }
             sistema.actualizarTurnos();
             sistema.actualizarDatos();
             VideoPlayer.getInstance().reproducir();
-            App.llamarEscena("principal", (Event) event);
+            App.llamarEscena(FXMLS, (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,7 +95,7 @@ public class PuestoController implements Initializable {
                 sistema.asignarMedico(textId.getText(), m);
             }
             VideoPlayer.getInstance().reproducir();
-            App.llamarEscena("principal", (Event) event);
+            App.llamarEscena(FXMLS, (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,7 +109,7 @@ public class PuestoController implements Initializable {
                 sistema.actualizarDatos();
             }
             VideoPlayer.getInstance().reproducir();
-            App.llamarEscena("principal", (Event) event);
+            App.llamarEscena(FXMLS, (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -122,7 +123,7 @@ public class PuestoController implements Initializable {
                 sistema.actualizarDatos();
             }
             VideoPlayer.getInstance().reproducir();
-            App.llamarEscena("principal", (Event) event);
+            App.llamarEscena(FXMLS, (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -138,9 +139,9 @@ public class PuestoController implements Initializable {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 VideoPlayer.getInstance().reproducir();
-                App.llamarEscena("principal", (Event) event);
+                App.llamarEscena(FXMLS, (Event) event);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.FormularioMedicoController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="1.0" layoutY="361.0" stroke="TRANSPARENT" strokeType="INSIDE" width="595.0" />
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="155.0" text="Médico">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Label>
+      <Line endX="428.0" layoutX="167.0" layoutY="71.0" startX="-167.0" />
+      <GridPane layoutX="25.0" layoutY="96.0" prefHeight="201.0" prefWidth="546.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="174.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="430.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="textNombre" GridPane.columnIndex="1" />
+            <TextField fx:id="textApellido" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textEspecialidad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Nombre">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label text="Apellido" GridPane.rowIndex="1">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label text="Especialidad" GridPane.rowIndex="2">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label text="ID" GridPane.rowIndex="3">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textId" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnAgregar" layoutX="509.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#agregarMedico" text="Agregar" />
+      <Button fx:id="btnCancelar" layoutX="417.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#atras" text="Cancelar" />
+   </children>
+</AnchorPane>

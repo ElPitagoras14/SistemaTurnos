@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package org.controladores;
 
-import FileResources.Serializar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -20,8 +19,7 @@ import javafx.scene.input.MouseEvent;
 import Main.App;
 import MediaPlayer.VideoPlayer;
 import System.SistemaEspera;
-import UniqueElement.Medico;
-import java.util.LinkedList;
+import org.unique.Medico;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
@@ -72,7 +70,7 @@ public class FormularioMedicoController implements Initializable {
             if (verificarCampos()) {
                 if (verificarTexto(textNombre.getText()) && verificarTexto(textApellido.getText()) && verificarTexto(textEspecialidad.getText())) {
                     doc = new Medico(textNombre.getText(), textApellido.getText(), textEspecialidad.getText(), textId.getText());
-                    sistema.añadirMedico(doc);
+                    sistema.addMedico(doc);
                     sistema.actualizarDatos();
                     Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico Registrado");
                     a.show();
@@ -85,7 +83,7 @@ public class FormularioMedicoController implements Initializable {
 
             }
 
-        } catch (fieldException campo) {
+        } catch (FieldException campo) {
             Alert a = new Alert(Alert.AlertType.INFORMATION, campo.getMessage());
             a.show();
         } catch (IOException ex) {
@@ -106,23 +104,23 @@ public class FormularioMedicoController implements Initializable {
                 VideoPlayer.getInstance().reproducir();
                 App.llamarEscena("principal", (Event) e);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                Logger.getLogger(FormularioMedicoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-    public boolean verificarCampos() throws fieldException {
+    public boolean verificarCampos() throws FieldException {
 
         if (textNombre.getText().equals("") || textApellido.getText().equals("") || textEspecialidad.getText().equals("")) {
-            throw new fieldException("Por favor llene los espacios vacios.");
+            throw new FieldException("Por favor llene los espacios vacios.");
         } else {
             return true;
         }
     }
 
-    class fieldException extends Exception {
+    class FieldException extends Exception {
 
-        public fieldException(String msg) {
+        public FieldException(String msg) {
             super(msg);
         }
     }

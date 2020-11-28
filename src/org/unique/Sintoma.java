@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UniqueElement;
+package org.unique;
 
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -41,7 +42,7 @@ public class Sintoma implements Serializable{
         this.prioridad = prioridad;
     }
 
-    public static ArrayList<Sintoma> llenarSintoma() {
+    public static List<Sintoma> llenarSintoma() {
         ArrayList<Sintoma> sintomas = new ArrayList<>();
         try (Scanner sc = new Scanner(new File("sintomas.txt"))) {
             while (sc.hasNextLine()) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package org.controladores;
 
 import Main.App;
 import MediaPlayer.VideoPlayer;
@@ -28,7 +28,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author GeovannyRojas
  */
-public class AtencionCienteController implements Initializable {
+public class AtencionClienteController implements Initializable {
 
     @FXML
     private TextArea textDiagnostico;
@@ -43,6 +43,8 @@ public class AtencionCienteController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,7 +58,7 @@ public class AtencionCienteController implements Initializable {
             VideoPlayer.getInstance().reproducir();
             App.llamarEscena("principal", (Event) event);
         } catch (IOException ex) {
-            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AtencionClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -72,7 +74,7 @@ public class AtencionCienteController implements Initializable {
                 VideoPlayer.getInstance().reproducir();
                 App.llamarEscena("principal", (Event) event);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                Logger.getLogger(AtencionClienteController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
