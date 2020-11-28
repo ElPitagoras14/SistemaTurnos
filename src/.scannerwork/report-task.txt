@@ -2,5 +2,5 @@ projectKey=G52020S2EDP2
 serverUrl=http://200.9.176.59:9000
 serverVersion=7.7.0.23042
 dashboardUrl=http://200.9.176.59:9000/dashboard?id=G52020S2EDP2
-ceTaskId=AXYPNSfZ2njepCnyV4yZ
-ceTaskUrl=http://200.9.176.59:9000/api/ce/task?id=AXYPNSfZ2njepCnyV4yZ
+ceTaskId=AXYPT5xo2njepCnyV4yb
+ceTaskUrl=http://200.9.176.59:9000/api/ce/task?id=AXYPT5xo2njepCnyV4yb
