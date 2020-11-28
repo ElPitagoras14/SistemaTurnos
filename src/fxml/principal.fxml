@@ -8,9 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.PrincipalController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.controladores.PrincipalController">
    <children>
       <Label layoutX="8.0" layoutY="415.0" prefHeight="28.0" prefWidth="584.0" style="-fx-background-color: #2980D5;" text="Horario de atención de Lunes a Viernes de 10 am a 17 pm" textFill="WHITE">
          <font>
@@ -31,26 +33,45 @@
             <Font size="18.0" />
          </font>
          <effect>
-            <DropShadow />
+            <DropShadow height="8.86" radius="1.7149999999999999" width="0.0" />
          </effect>
       </Label>
-      <ScrollPane layoutX="327.0" layoutY="60.0" prefHeight="299.0" prefWidth="259.0" style="-fx-background-color: #157FDD;">
+      <ScrollPane layoutX="327.0" layoutY="60.0" prefHeight="299.0" prefWidth="259.0">
          <content>
-            <HBox prefHeight="294.0" prefWidth="254.0">
+            <HBox prefHeight="297.0" prefWidth="257.0" style="-fx-background-color: #157FDD;">
                <children>
                   <VBox fx:id="Vbturno" prefHeight="294.0" prefWidth="130.0">
                      <children>
-                        <Label text="Turno" />
+                        <Label prefHeight="26.0" prefWidth="107.0" text="Turno">
+                           <padding>
+                              <Insets left="45.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                   <VBox fx:id="Vbpuesto" prefHeight="294.0" prefWidth="125.0">
                      <children>
-                        <Label text="Puesto" />
+                        <Label text="Puesto">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="35.0" />
+                           </padding></Label>
                      </children>
                   </VBox>
                </children>
             </HBox>
          </content></ScrollPane>
       <Button fx:id="btnPuesto" layoutX="497.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#crearPuesto" text="Crear Puesto" />
+      <Label layoutX="48.0" layoutY="13.0" prefHeight="43.0" prefWidth="208.0" text="Clínica">
+         <font>
+            <Font name="Helvetica" size="40.0" />
+         </font>
+      </Label>
+      <Line endX="-100.0" endY="296.0" layoutX="419.0" layoutY="61.0" startX="-100.0" />
+      <Circle fill="DODGERBLUE" layoutX="25.0" layoutY="37.0" radius="11.0" stroke="TRANSPARENT" strokeType="INSIDE" />
    </children>
 </AnchorPane>
