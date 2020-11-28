@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import Main.App;
 import MediaPlayer.VideoPlayer;
+import System.SistemaEspera;
 import UniqueElement.Paciente;
 import UniqueElement.Sintoma;
 import java.util.LinkedList;
@@ -48,9 +49,7 @@ public class FormularioPacienteController implements Initializable {
     private ComboBox cmbSintoma;
     @FXML
     private ComboBox cmbGenero;
-
-    Serializar<Paciente> serializar = new Serializar();
-    LinkedList<Paciente> listaPaciente;
+            
     /**
      * textNombre = el campo de Nombre del paciente. textApellido = el campo de
      * Apellido del paciente. textEdad = la edad del paciente ----verificar que
@@ -60,16 +59,18 @@ public class FormularioPacienteController implements Initializable {
 
     @FXML
     private Button btnCreaPaciente, btnCancelar;
+    
+    private SistemaEspera sistema;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        sistema = SistemaEspera.getInstance();
+        
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Masculino");
         generos.add("Femenino");
         generos.add("Sin Especificar");
         cmbGenero.setItems(FXCollections.observableArrayList(generos));
-        listaPaciente = serializar.deserializar("Paciente.ser");
         cmbSintoma.setItems(FXCollections.observableArrayList(Sintoma.llenarSintoma()));
     }
 
@@ -88,8 +89,9 @@ public class FormularioPacienteController implements Initializable {
             }
 
             Paciente paciente = new Paciente(textNombre.getText(),textApellido.getText(),textEdad.getText(),cmbGenero.getValue().toString(),(Sintoma) cmbSintoma.getValue());
-            listaPaciente.add(paciente);
-            serializar.serializar(listaPaciente, "Paciente.ser");
+            sistema.añadirPaciente(paciente);
+            sistema.actualizarTurnos();
+            sistema.actualizarDatos();
          
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Se ha registrado un paciente");
             a.show();

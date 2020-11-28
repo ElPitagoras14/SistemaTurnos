@@ -6,6 +6,7 @@
 package UniqueElement;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ import java.util.Scanner;
  *
  * @author GeovannyRojas
  */
-public class Sintoma {
+public class Sintoma implements Serializable{
 
     private String nombre;
     private int prioridad;

@@ -15,7 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import Main.App;
 import MediaPlayer.VideoPlayer;
+import System.SistemaEspera;
 import UniqueElement.Puesto;
+import UniqueElement.Turno;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -47,12 +49,18 @@ public class PrincipalController implements Initializable {
     private VBox Vbturno, Vbpuesto;
 
     @FXML
+    private Button atencionPaciente;
+
+    @FXML
     private Button btnPuesto;
 
-    VideoPlayer reproductor = VideoPlayer.getInstance();
+    private VideoPlayer reproductor;
+    private SistemaEspera sistema;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        reproductor = VideoPlayer.getInstance();
+        sistema = SistemaEspera.getInstance();
         Calendar calendario = Calendar.getInstance();
         int Hora = calendario.get(Calendar.HOUR_OF_DAY);
         int minutos = calendario.get(Calendar.MINUTE);
@@ -62,7 +70,7 @@ public class PrincipalController implements Initializable {
             hora.setText(Hora + ":" + minutos);
         }
 
-        llenarPuesto("Puestos.ser");
+        llenarPuesto();
         reproductor.getVentanaVideo().setX(10);
         reproductor.getVentanaVideo().setY(10);
         reproductor.getVentanaVideo().setFitHeight(200);
@@ -101,7 +109,20 @@ public class PrincipalController implements Initializable {
         }
     }
 
-    private void llenarPuesto(String Archivo) {
+    @FXML
+    private void atenderPaciente(MouseEvent e) {
+        System.out.println("Paciente Atendido");
+    }
+
+    private void llenarPuesto() {
+        System.out.println("LLENANDO");
+        for(Turno t: sistema.getListaTurno()) {
+            Label turnos = new Label(t.getCodigo() + " " + t.getPaciente().getNombre());
+            Vbturno.getChildren().add(turnos);
+            Label puesto = new Label(t.getPuesto().getIdPuesto());
+            Vbpuesto.getChildren().add(puesto);
+        }
+        /*
         Serializar<Puesto> p = new Serializar();
         LinkedList<Puesto> listap = p.deserializar(Archivo);
         for (int i = 0; i < listap.size(); i++) {
@@ -111,6 +132,7 @@ public class PrincipalController implements Initializable {
             Label puesto = new Label(cola.getIdPuesto());
             Vbpuesto.getChildren().add(puesto);
         }
+         */
     }
 
 }

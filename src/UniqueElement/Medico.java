@@ -17,6 +17,7 @@ public class Medico implements Serializable {
     private String apellido;
     private String especialidad;
     private String id;
+    private boolean asignado;
     private static final long serialVersionUID = 123455L;
 
     public Medico(String nombre, String apellido, String especialidad, String id) {
@@ -26,6 +27,14 @@ public class Medico implements Serializable {
         this.id = id;
     }
 
+    public boolean isAsignado() {
+        return asignado;
+    }
+
+    public void setAsignado(boolean asignado) {
+        this.asignado = asignado;
+    }
+    
     public String getId() {
         return id;
     }
