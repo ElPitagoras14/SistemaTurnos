@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import Main.App;
 import MediaPlayer.VideoPlayer;
+import System.SistemaEspera;
 import UniqueElement.Medico;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -49,8 +50,7 @@ public class FormularioMedicoController implements Initializable {
     @FXML
     private TextField textId;
 
-    Serializar<Medico> serializar = new Serializar();
-    LinkedList<Medico> listaDoc;
+    private SistemaEspera sistema;
 
     /**
      *
@@ -62,8 +62,7 @@ public class FormularioMedicoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        listaDoc = serializar.deserializar("Medicos.ser");
+        sistema = SistemaEspera.getInstance();
     }
 
     @FXML
@@ -73,9 +72,8 @@ public class FormularioMedicoController implements Initializable {
             if (verificarCampos()) {
                 if (verificarTexto(textNombre.getText()) && verificarTexto(textApellido.getText()) && verificarTexto(textEspecialidad.getText())) {
                     doc = new Medico(textNombre.getText(), textApellido.getText(), textEspecialidad.getText(), textId.getText());
-                    Serializar<Medico> serializar = new Serializar();
-                    listaDoc.add(doc);
-                    serializar.serializar(listaDoc, "Medicos.ser");
+                    sistema.añadirMedico(doc);
+                    sistema.actualizarDatos();
                     Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico Registrado");
                     a.show();
                     VideoPlayer.getInstance().reproducir();

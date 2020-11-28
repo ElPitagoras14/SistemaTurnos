@@ -33,7 +33,7 @@ public class App extends Application {
     
     @Override
     public void init(){
-        inicializarDatos();
+        //inicializarDatos();
     }
 
     @Override
@@ -74,6 +74,7 @@ public class App extends Application {
         
         instancia.añadirPuesto(new Puesto("001", new Medico("Carlos", "Arellano", "Medicina General", "001")));
         instancia.añadirPuesto(new Puesto("002", new Medico("Armando", "Paredes", "Traumatologo", "002")));
-        
+        instancia.actualizarTurnos();
+        instancia.actualizarDatos();
     }
 }

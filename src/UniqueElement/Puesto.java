@@ -15,19 +15,17 @@ import java.util.Objects;
 public class Puesto implements Serializable {
 
     private String idPuesto;
-    private boolean ocupado;
     private Medico medicoA;
+    private boolean atencion;
     private static final long serialVersionUID = 12345643L;
 
     public Puesto(String idPuesto, Medico medicoA) {
         this.idPuesto = idPuesto;
         this.medicoA = medicoA;
-        ocupado = false;
     }
 
     public Puesto(String idPuesto) {
         this.idPuesto = idPuesto;
-        ocupado = false;
     }
 
     public String getIdPuesto() {
@@ -39,11 +37,15 @@ public class Puesto implements Serializable {
     }
 
     public boolean isOcupado() {
-        return ocupado;
+        return medicoA != null;
+    }
+    
+    public boolean isAtendiendo() {
+        return atencion;
     }
 
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
+    public void setAtencion(boolean atencion) {
+        this.atencion = atencion;
     }
 
     public Medico getMedicoA() {
@@ -52,10 +54,6 @@ public class Puesto implements Serializable {
 
     public void setMedicoA(Medico medicoA) {
         this.medicoA = medicoA;
-    }
-
-    public static void anadirPuesto(Puesto p) {
-
     }
 
     @Override
@@ -78,11 +76,8 @@ public class Puesto implements Serializable {
         }
         return true;
     }
-
-    public void eliminarPuesto() {
-
-    }
-
-    public void anadirMedico(String ced) {
+    
+    public void eliminarMedico() {
+        medicoA = null;
     }
 }

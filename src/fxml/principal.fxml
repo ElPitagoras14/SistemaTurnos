@@ -25,6 +25,7 @@
       </Label>
       <Button fx:id="formularioMedico" layoutX="25.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#crearMedico" text="Añadir Médico" />
       <Button fx:id="formularioPaciente" layoutX="152.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#crearPaciente" text="Añadir Paciente" />
+      <Button fx:id="atencionPaciente" layoutX="287.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#atenderPaciente" text="Atender Paciente" />
       <Label fx:id="hora" layoutX="501.0" layoutY="27.0" prefHeight="20.0" prefWidth="48.0" text="Label">
          <font>
             <Font size="18.0" />

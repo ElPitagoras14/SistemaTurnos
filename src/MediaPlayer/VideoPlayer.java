@@ -92,8 +92,6 @@ public class VideoPlayer {
             } catch (InterruptedException ex) {
                 Logger.getLogger(VideoPlayer.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("Cierro Hilo");
         }
-
     }
 }

@@ -21,6 +21,7 @@
       </Label>
       <Line endX="499.0" layoutX="101.0" layoutY="66.0" startX="-100.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutY="348.0" stroke="TRANSPARENT" strokeType="INSIDE" width="601.0" />
+      <Button fx:id="btnEliminarMedico" layoutX="399.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#eliminarMedico" text="Eliminar Medico" />
       <Button fx:id="btnCrear" layoutX="519.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#crearPuesto" text="Crear" />
       <Button fx:id="btnEliminar" layoutX="450.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#eliminarPuesto" text="Eliminar" />
       <GridPane layoutX="20.0" layoutY="80.0" prefHeight="162.0" prefWidth="349.0">
