@@ -111,28 +111,21 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void atenderPaciente(MouseEvent e) {
-        System.out.println("Paciente Atendido");
+        try {
+            reproductor.cambiarVentana();
+            App.llamarEscena("AtencionCiente", (Event) e);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void llenarPuesto() {
-        System.out.println("LLENANDO");
         for(Turno t: sistema.getListaTurno()) {
             Label turnos = new Label(t.getCodigo() + " " + t.getPaciente().getNombre());
             Vbturno.getChildren().add(turnos);
             Label puesto = new Label(t.getPuesto().getIdPuesto());
             Vbpuesto.getChildren().add(puesto);
         }
-        /*
-        Serializar<Puesto> p = new Serializar();
-        LinkedList<Puesto> listap = p.deserializar(Archivo);
-        for (int i = 0; i < listap.size(); i++) {
-            Label turnos = new Label("A" + i);
-            Puesto cola = listap.get(i);
-            Vbturno.getChildren().add(turnos);
-            Label puesto = new Label(cola.getIdPuesto());
-            Vbpuesto.getChildren().add(puesto);
-        }
-         */
     }
 
 }

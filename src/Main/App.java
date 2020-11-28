@@ -5,6 +5,7 @@
  */
 package Main;
 
+import MediaPlayer.VideoPlayer;
 import System.SistemaEspera;
 import UniqueElement.Medico;
 import UniqueElement.Paciente;
@@ -42,6 +43,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    
+    @Override
+    public void stop() {
+        VideoPlayer.getInstance().cambiarVentana();
+    }
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
@@ -72,8 +78,13 @@ public class App extends Application {
         instancia.añadirPaciente(new Paciente("Maria", "Flores", "18", "Femenino", new Sintoma("Erupciones", 3)));
         instancia.añadirPaciente(new Paciente("Carla", "Alvarez", "25", "Femenino", new Sintoma("Calambre", 5)));
         
-        instancia.añadirPuesto(new Puesto("001", new Medico("Carlos", "Arellano", "Medicina General", "001")));
-        instancia.añadirPuesto(new Puesto("002", new Medico("Armando", "Paredes", "Traumatologo", "002")));
+        Medico m1 = new Medico("Carlos", "Arellano", "Medicina General", "001");
+        Medico m2 = new Medico("Armando", "Paredes", "Traumatologo", "002");
+        
+        instancia.añadirMedico(m1);
+        instancia.añadirMedico(m2);
+        instancia.añadirPuesto(new Puesto("001", m1));
+        instancia.añadirPuesto(new Puesto("002", m2));
         instancia.actualizarTurnos();
         instancia.actualizarDatos();
     }

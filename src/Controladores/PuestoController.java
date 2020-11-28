@@ -5,7 +5,6 @@
  */
 package Controladores;
 
-import FileResources.Serializar;
 import Main.App;
 import MediaPlayer.VideoPlayer;
 import System.SistemaEspera;
@@ -14,7 +13,6 @@ import UniqueElement.Puesto;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -44,6 +42,8 @@ public class PuestoController implements Initializable {
     @FXML
     private Button btnEliminarMedico;
     @FXML
+    private Button btnAsignarMedico;
+    @FXML
     private TextField textId;
     @FXML
     private ComboBox cmbMedico;
@@ -58,9 +58,9 @@ public class PuestoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        LinkedList<Medico> listaMedicosDisponibles = SistemaEspera.getInstance().getListaMedico();
-        cmbMedico.setItems(FXCollections.observableList(listaMedicosDisponibles));
         sistema = SistemaEspera.getInstance();
+        LinkedList<Medico> listaMedicosDisponibles = sistema.getListaMedico();
+        cmbMedico.setItems(FXCollections.observableList(listaMedicosDisponibles));
     }
 
     @FXML
@@ -68,7 +68,7 @@ public class PuestoController implements Initializable {
         try {
             Puesto p;
             if (!textId.getText().equals("")) {
-                if (!cmbMedico.getValue().toString().equals("")) {
+                if (cmbMedico.getValue() != null) {
                     System.out.println("NO VACIO MEDICO");
                     Medico m = (Medico) cmbMedico.getValue();
                     p = new Puesto(textId.getText(), m);
@@ -79,6 +79,20 @@ public class PuestoController implements Initializable {
             }
             sistema.actualizarTurnos();
             sistema.actualizarDatos();
+            VideoPlayer.getInstance().reproducir();
+            App.llamarEscena("principal", (Event) event);
+        } catch (IOException ex) {
+            Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    private void asignarMedico(MouseEvent event) {
+        try {
+            if (!textId.getText().equals("") && !cmbMedico.getValue().toString().equals("")) {
+                Medico m = (Medico) cmbMedico.getValue();
+                sistema.asignarMedico(textId.getText(), m);
+            }
             VideoPlayer.getInstance().reproducir();
             App.llamarEscena("principal", (Event) event);
         } catch (IOException ex) {

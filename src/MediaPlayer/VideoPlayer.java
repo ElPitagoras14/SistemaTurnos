@@ -39,8 +39,8 @@ public class VideoPlayer {
     }
 
     private void ingresarVideos() {
-        listaVideo.addLast(new Video("gato.mp4"));
         listaVideo.addLast(new Video("heladero.mp4"));
+        listaVideo.addLast(new Video("gato.mp4"));
         listaVideo.addLast(new Video("inferno.mp4"));
 
     }
