@@ -20,10 +20,18 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -64,6 +72,8 @@ public class PrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         reproductor = VideoPlayer.getInstance();
         sistema = SistemaEspera.getInstance();
+        Vbturno.setAlignment(Pos.TOP_CENTER);
+        Vbpuesto.setAlignment(Pos.TOP_CENTER);
         Calendar calendario = Calendar.getInstance();
         int Hora = calendario.get(Calendar.HOUR_OF_DAY);
         int minutos = calendario.get(Calendar.MINUTE);
@@ -123,15 +133,20 @@ public class PrincipalController implements Initializable {
 
     private void llenarPuesto() {
         for(Turno t: sistema.getListaTurno()) {
-            Text turnos = new Text(t.getCodigo() + " " + t.getPaciente().getNombre());
-            turnos.setFill(Color.WHITE);
-            turnos.setLineSpacing(30);
-            turnos.setTextAlignment(TextAlignment.CENTER);
+            
+            Label turnos = new Label(t.getCodigo() + " " + t.getPaciente().getNombre());
+            turnos.setMinWidth(100);
+            turnos.setMinHeight(20);
+            turnos.setAlignment(Pos.CENTER);
+            turnos.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, new CornerRadii(5.0), new Insets(-5.0))));
             Vbturno.getChildren().add(turnos);
-            Text puesto = new Text(t.getPuesto().getIdPuesto());
-            puesto.setFill(Color.WHITE);
+            Label puesto = new Label(t.getPuesto().getIdPuesto());
+            puesto.setMinWidth(100);
+            puesto.setAlignment(Pos.CENTER);
+            puesto.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, new CornerRadii(5.0), new Insets(-5.0))));
+            puesto.setTextFill(Color.BLACK);
+            puesto.setMinHeight(20);
             puesto.setLineSpacing(20);
-            puesto.setTextAlignment(TextAlignment.CENTER);
             Vbpuesto.getChildren().add(puesto);
         }
     }
