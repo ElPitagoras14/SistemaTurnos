@@ -18,6 +18,10 @@ public class Paciente implements Serializable {
     private String edad;
     private String genero;
     private Sintoma sintoma;
+    
+    private String diagnostico;
+    private String receta;
+    
     private static final long serialVersionUID = 123L;
 
     public Paciente(String nombre, String apellido, String edad, String genero, Sintoma sintoma) {
@@ -66,6 +70,14 @@ public class Paciente implements Serializable {
 
     public void setSintoma(Sintoma sintoma) {
         this.sintoma = sintoma;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
+
+    public void setReceta(String receta) {
+        this.receta = receta;
     }
 
 }

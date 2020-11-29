@@ -42,14 +42,15 @@ public class AtencionClienteController implements Initializable {
     private Button btnCancelar;
     @FXML
     private Button btnAtencion;
-    
+
     @FXML
     private Text infoPaciente;
-    
+
     private SistemaEspera sistema;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -58,22 +59,30 @@ public class AtencionClienteController implements Initializable {
         sistema = SistemaEspera.getInstance();
         LinkedList<Turno> pacientes = (LinkedList<Turno>) sistema.getListaTurno();
         Paciente p = pacientes.getFirst().getPaciente();
-        infoPaciente.setText("Paciente:"+p.getNombre()+" "+p.getApellido()+" de "+p.getEdad()+" años.\nSintoma:"+p.getSintoma().toString());
+        infoPaciente.setText("Paciente:" + p.getNombre() + " " + p.getApellido() + " de " + p.getEdad() + " años.\nSintoma:" + p.getSintoma().toString());
     }
-    
+
     @FXML
     public void confirmarAtencion(MouseEvent event) {
         try {
-            sistema.atenderPaciente();
-            VideoPlayer.getInstance().reproducir();
-            App.llamarEscena("principal", (Event) event);
+            if (!textDiagnostico.getText().equals("") && !textReceta.getText().equals("")) {
+                sistema.atenderPaciente(textDiagnostico.getText(), textReceta.getText());
+                sistema.actualizarDatos();
+                VideoPlayer.getInstance().reproducir();
+                App.llamarEscena("principal", (Event) event);
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Paciente Atendido");
+                a.show();
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Llene los campos vacios");
+                a.show();
+            }
         } catch (IOException ex) {
             Logger.getLogger(AtencionClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
-    private void cancelar (MouseEvent event) {
+    private void cancelar(MouseEvent event) {
         Alert salida = new Alert(Alert.AlertType.CONFIRMATION);
         salida.setTitle("Confirmacion de Salida");
         salida.setContentText("Esta seguro que desea salir?");
@@ -88,5 +97,5 @@ public class AtencionClienteController implements Initializable {
             }
         }
     }
-    
+
 }

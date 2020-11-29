@@ -6,10 +6,13 @@
 package MediaPlayer;
 
 import TDAs.CircularLinkedList;
+import java.io.File;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.media.*;
 import javafx.util.Duration;
+import org.unique.Sintoma;
 
 /**
  *
@@ -39,9 +42,13 @@ public class VideoPlayer {
     }
 
     private void ingresarVideos() {
-        listaVideo.addLast(new Video("heladero.mp4"));
-        listaVideo.addLast(new Video("gato.mp4"));
-        listaVideo.addLast(new Video("inferno.mp4"));
+        try ( Scanner sc = new Scanner(new File("videos.txt"))) {
+            while (sc.hasNextLine()) {
+                String video = sc.nextLine();
+                listaVideo.addLast(new Video(video));
+            }
+        } catch (Exception e) {
+        }
 
     }
 
@@ -86,7 +93,7 @@ public class VideoPlayer {
                     tiempoActual = reproductor.getCurrentTime();
                 }
                 if (ejecutar) {
-                    Logger.getLogger(VideoPlayer.class.getName()).log(Level.SEVERE,"Cambio Video");
+                    Logger.getLogger(VideoPlayer.class.getName()).log(Level.SEVERE, "Cambio Video");
                     siguienteVideo();
                 }
             } catch (InterruptedException ex) {

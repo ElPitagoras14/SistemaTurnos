@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -73,7 +74,9 @@ public class PrincipalController implements Initializable {
         reproductor = VideoPlayer.getInstance();
         sistema = SistemaEspera.getInstance();
         Vbturno.setAlignment(Pos.TOP_CENTER);
+        Vbturno.setSpacing(15);
         Vbpuesto.setAlignment(Pos.TOP_CENTER);
+        Vbpuesto.setSpacing(15);
         Calendar calendario = Calendar.getInstance();
         int Hora = calendario.get(Calendar.HOUR_OF_DAY);
         int minutos = calendario.get(Calendar.MINUTE);
@@ -150,5 +153,5 @@ public class PrincipalController implements Initializable {
             Vbpuesto.getChildren().add(puesto);
         }
     }
-
+    
 }

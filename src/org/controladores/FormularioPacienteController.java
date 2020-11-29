@@ -47,23 +47,22 @@ public class FormularioPacienteController implements Initializable {
     private ComboBox cmbSintoma;
     @FXML
     private ComboBox cmbGenero;
-            
+
     /**
      * textNombre = el campo de Nombre del paciente. textApellido = el campo de
      * Apellido del paciente. textEdad = la edad del paciente ----verificar que
      * sea un número. textSintoma = sintoma del paciente, supuse que solo era
      * uno. ---- tmb verificar. cmbGenero = comboBox para el genero.
      */
-
     @FXML
     private Button btnCreaPaciente, btnCancelar;
-    
+
     private SistemaEspera sistema;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sistema = SistemaEspera.getInstance();
-        
+
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Masculino");
         generos.add("Femenino");
@@ -86,15 +85,14 @@ public class FormularioPacienteController implements Initializable {
                 throw new FieldException("Por favor ingrese datos válidos");
             }
 
-            Paciente paciente = new Paciente(textNombre.getText(),textApellido.getText(),textEdad.getText(),cmbGenero.getValue().toString(),(Sintoma) cmbSintoma.getValue());
+            Paciente paciente = new Paciente(textNombre.getText(), textApellido.getText(), textEdad.getText(), cmbGenero.getValue().toString(), (Sintoma) cmbSintoma.getValue());
             sistema.addPaciente(paciente);
             sistema.actualizarTurnos();
             sistema.actualizarDatos();
-         
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "Se ha registrado un paciente");
-            a.show();
             VideoPlayer.getInstance().reproducir();
             App.llamarEscena("principal", (Event) e);
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "Se ha registrado un paciente");
+            a.show();
         } catch (FieldException f) {
             Alert a = new Alert(Alert.AlertType.INFORMATION, f.getMessage());
             a.show();

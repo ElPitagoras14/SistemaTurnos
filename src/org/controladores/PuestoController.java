@@ -52,8 +52,9 @@ public class PuestoController implements Initializable {
     private Button btnAtras;
 
     private SistemaEspera sistema;
-    
+
     public static final String FXMLS = "principal";
+
     /**
      * Initializes the controller class.
      */
@@ -68,34 +69,50 @@ public class PuestoController implements Initializable {
     private void crearPuesto(MouseEvent event) {
         try {
             Puesto p;
-            if (!textId.getText().equals("")) {
+            if (!textId.getText().equals("") && sistema.idPuestoDisponible(textId.getText())) {
                 if (cmbMedico.getValue() != null) {
-                    Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, "NO VACIO MEDICO");
                     Medico m = (Medico) cmbMedico.getValue();
                     p = new Puesto(textId.getText(), m);
-                } else{ 
+                } else {
                     p = new Puesto(textId.getText());
                 }
                 sistema.addPuesto(p);
+                sistema.actualizarTurnos();
+                sistema.actualizarDatos();
+                VideoPlayer.getInstance().reproducir();
+                App.llamarEscena(FXMLS, (Event) event);
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Puesto Creado");
+                a.show();
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Llene los campos vacios e ingrese un id disponible");
+                a.show();
             }
-            sistema.actualizarTurnos();
-            sistema.actualizarDatos();
-            VideoPlayer.getInstance().reproducir();
-            App.llamarEscena(FXMLS, (Event) event);
+
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
     private void asignarMedico(MouseEvent event) {
         try {
             if (!textId.getText().equals("") && cmbMedico.getValue() != null) {
                 Medico m = (Medico) cmbMedico.getValue();
-                sistema.asignarMedico(textId.getText(), m);
+                if (sistema.asignarMedico(textId.getText(), m)) {
+                    sistema.actualizarTurnos();
+                    sistema.actualizarDatos();
+                    VideoPlayer.getInstance().reproducir();
+                    App.llamarEscena(FXMLS, (Event) event);
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico asignado");
+                    a.show();
+                } else {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Puesto no existe o vacio");
+                    a.show();
+                }
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Llene los campos vacios y seleccione un medico");
+                a.show();
             }
-            VideoPlayer.getInstance().reproducir();
-            App.llamarEscena(FXMLS, (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,25 +122,44 @@ public class PuestoController implements Initializable {
     private void eliminarPuesto(MouseEvent event) {
         try {
             if (!textId.getText().equals("")) {
-                sistema.eliminarPuesto(textId.getText());
-                sistema.actualizarDatos();
+                if (sistema.eliminarPuesto(textId.getText())) {
+                    sistema.actualizarDatos();
+                    VideoPlayer.getInstance().reproducir();
+                    App.llamarEscena(FXMLS, (Event) event);
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Puesto eliminado");
+                    a.show();
+                } else {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Puesto eliminado previamente u ocupado");
+                    a.show();
+                }
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Llene los campos vacios");
+                a.show();
             }
-            VideoPlayer.getInstance().reproducir();
-            App.llamarEscena(FXMLS, (Event) event);
+
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
     private void eliminarMedico(MouseEvent event) {
         try {
             if (!textId.getText().equals("")) {
-                sistema.eliminarMedico(textId.getText());
-                sistema.actualizarDatos();
+                if (sistema.eliminarMedico(textId.getText())) {
+                    sistema.actualizarDatos();
+                    VideoPlayer.getInstance().reproducir();
+                    App.llamarEscena(FXMLS, (Event) event);
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico eliminado");
+                    a.show();
+                } else {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico eliminado previamente o Puesto ocupado");
+                    a.show();
+                }
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Llene los campos vacios");
+                a.show();
             }
-            VideoPlayer.getInstance().reproducir();
-            App.llamarEscena(FXMLS, (Event) event);
         } catch (IOException ex) {
             Logger.getLogger(PuestoController.class.getName()).log(Level.SEVERE, null, ex);
         }

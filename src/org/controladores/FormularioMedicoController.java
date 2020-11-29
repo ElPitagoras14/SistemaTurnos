@@ -72,10 +72,10 @@ public class FormularioMedicoController implements Initializable {
                     doc = new Medico(textNombre.getText(), textApellido.getText(), textEspecialidad.getText(), textId.getText());
                     sistema.addMedico(doc);
                     sistema.actualizarDatos();
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico Registrado");
-                    a.show();
                     VideoPlayer.getInstance().reproducir();
                     App.llamarEscena("principal", (Event) e);
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Médico Registrado");
+                    a.show();
                 } else {
                     Alert a = new Alert(Alert.AlertType.INFORMATION, "Ingrese correctamente los campos");
                     a.show();

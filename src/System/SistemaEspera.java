@@ -49,6 +49,7 @@ public class SistemaEspera {
         listaPuesto = serPuesto.deserializar("Puesto.ser");
         listaTurno = serTurno.deserializar("Turno.ser");
         historicoPaciente = serPaciente.deserializar("Paciente.ser");
+        colaPaciente.addAll(serPaciente.deserializar("ColaPaciente.ser"));
     }
 
     public void actualizarDatos() {
@@ -56,6 +57,7 @@ public class SistemaEspera {
         serPuesto.serializar(listaPuesto, "Puesto.ser");
         serPaciente.serializar(historicoPaciente, "Paciente.ser");
         serTurno.serializar(listaTurno, "Turno.ser");
+        serPaciente.serializar(new LinkedList<>(colaPaciente), "ColaPaciente.ser");
     }
 
     public void addPaciente(Paciente paciente) {
@@ -63,8 +65,10 @@ public class SistemaEspera {
         historicoPaciente.add(paciente);
     }
 
-    public void atenderPaciente() {
-        listaTurno.getFirst().getPuesto().setAtencion(false);
+    public void atenderPaciente(String diagnostico, String receta) {
+        obtenerPuesto(listaTurno.getFirst().getPuesto().getIdPuesto()).setAtencion(false);
+        listaTurno.getFirst().getPaciente().setDiagnostico(diagnostico);
+        listaTurno.getFirst().getPaciente().setReceta(receta);
         listaTurno.removeFirst();
         actualizarTurnos();
     }
@@ -112,30 +116,40 @@ public class SistemaEspera {
         listaPuesto.add(p);
         listaMedico.remove(p.getMedicoA());
     }
+    
+    public boolean idPuestoDisponible(String id) {
+        return obtenerPuesto(id) == null;
+    }
 
-    public void asignarMedico(String id, Medico m) {
+    public boolean asignarMedico(String id, Medico m) {
         Puesto p = obtenerPuesto(id);
         if (p != null && !p.isOcupado() && !p.isAtendiendo() && !m.isAsignado()) {
             m.setAsignado(true);
             listaMedico.remove(m);
             p.setMedicoA(m);
+            return true;
         }
+        return false;
     }
 
-    public void eliminarMedico(String id) {
+    public boolean eliminarMedico(String id) {
         Puesto p = obtenerPuesto(id);
         if (p != null && p.isOcupado() && !p.isAtendiendo()) {
             p.getMedicoA().setAsignado(false);
             listaMedico.add(p.getMedicoA());
             p.eliminarMedico();
+            return true;
         }
+        return false;
     }
 
-    public void eliminarPuesto(String id) {
+    public boolean eliminarPuesto(String id) {
         Puesto p = obtenerPuesto(id);
         if (p != null && !p.isOcupado() && !p.isAtendiendo()) {
             listaPuesto.remove(p);
+            return true;
         }
+        return false;
     }
 
     private Puesto obtenerPuesto(String id) {
