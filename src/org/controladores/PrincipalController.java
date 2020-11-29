@@ -88,7 +88,7 @@ public class PrincipalController implements Initializable {
 
         llenarPuesto();
         reproductor.getVentanaVideo().setX(10);
-        reproductor.getVentanaVideo().setY(70);
+        reproductor.getVentanaVideo().setY(120);
         reproductor.getVentanaVideo().setFitHeight(200);
         reproductor.getVentanaVideo().setFitWidth(300);
         root.getChildren().add(reproductor.getVentanaVideo());
@@ -127,10 +127,15 @@ public class PrincipalController implements Initializable {
     @FXML
     private void atenderPaciente(MouseEvent e) {
         try {
+            if(sistema.getListaTurno().isEmpty())
+                throw new NullPointerException("No hay pacientes en cola");
             reproductor.cambiarVentana();
             App.llamarEscena("AtencionCliente", (Event) e);
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(NullPointerException ale){
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION,ale.getMessage());
+            alerta.show();
         }
     }
 
