@@ -9,16 +9,27 @@ package TDAs;
  *
  * @author eduardo
  */
-public interface List <E>{
+public interface List<E> {
+
     boolean addFirst(E e);
+
     boolean addLast(E e);
+
     E getFirst();
+
     E getLast();
+
     int size();
+
     boolean removeLast();
+
     boolean removeFirst();
+
     boolean isEmpty();
+
     E get(int index);
+
     boolean contains(E e);
+
     boolean remove(int index);
 }

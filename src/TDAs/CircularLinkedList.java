@@ -17,6 +17,7 @@ public class CircularLinkedList<E> implements List<E> {
     public CircularLinkedList() {
 
     }
+
     private class Node<E> {
 
         private E data;
@@ -196,7 +197,7 @@ public class CircularLinkedList<E> implements List<E> {
         sb.append("]");
         return sb.toString();
     }
-    
+
     public E recorrerLlamada() {
         Node<E> tmp = last.next;
         last = tmp;

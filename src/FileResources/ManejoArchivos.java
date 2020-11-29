@@ -7,15 +7,14 @@ package FileResources;
 
 import java.util.LinkedList;
 
-
-
 /**
  *
  * @author El Pitagoras
  * @param <E>
  */
 public interface ManejoArchivos<E> {
-    
+
     void serializar(LinkedList<E> lista, String archivo);
+
     LinkedList<E> deserializar(String archivo);
 }
