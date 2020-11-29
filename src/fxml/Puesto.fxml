@@ -50,5 +50,6 @@
          </children>
       </GridPane>
       <Button fx:id="btnAtras" layoutX="377.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#volver" text="Cancelar" />
+      <Button fx:id="btnPuestosExistentes" layoutX="429.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#mostrarPuestos" text="Puestos Existentes" />
    </children>
 </AnchorPane>

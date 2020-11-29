@@ -40,6 +40,8 @@ public class PuestoController implements Initializable {
     @FXML
     private Button btnEliminar;
     @FXML
+    private Button btnPuestosExistentes;
+    @FXML
     private Button btnEliminarMedico;
     @FXML
     private Button btnAsignarMedico;
@@ -63,6 +65,12 @@ public class PuestoController implements Initializable {
         sistema = SistemaEspera.getInstance();
         List<Medico> listaMedicosDisponibles = sistema.getListaMedico();
         cmbMedico.setItems(FXCollections.observableList(listaMedicosDisponibles));
+    }
+
+    @FXML
+    private void mostrarPuestos(MouseEvent event) {
+        Alert a = new Alert(Alert.AlertType.INFORMATION, sistema.obtenerInfoPuestos());
+        a.show();
     }
 
     @FXML
