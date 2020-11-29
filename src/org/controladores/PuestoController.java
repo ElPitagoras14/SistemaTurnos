@@ -90,7 +90,7 @@ public class PuestoController implements Initializable {
     @FXML
     private void asignarMedico(MouseEvent event) {
         try {
-            if (!textId.getText().equals("") && !cmbMedico.getValue().toString().equals("")) {
+            if (!textId.getText().equals("") && cmbMedico.getValue() != null) {
                 Medico m = (Medico) cmbMedico.getValue();
                 sistema.asignarMedico(textId.getText(), m);
             }
