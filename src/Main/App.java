@@ -31,11 +31,6 @@ import javafx.scene.Node;
 public class App extends Application {
 
     private static Scene scene;
-    
-    @Override
-    public void init(){
-        //inicializarDatos();
-    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -69,23 +64,5 @@ public class App extends Application {
         appStage.setScene(scene);
         appStage.toFront();
         appStage.show();
-    }
-    
-    private void inicializarDatos() {
-        SistemaEspera instancia = SistemaEspera.getInstance();
-        instancia.addPaciente(new Paciente("Jose", "Alvarez", "25", "Masculino", new Sintoma("Fiebre", 3)));
-        instancia.addPaciente(new Paciente("Juan", "Garcia", "30", "Masculino", new Sintoma("Sangrado Nasal", 1)));
-        instancia.addPaciente(new Paciente("Maria", "Flores", "18", "Femenino", new Sintoma("Erupciones", 3)));
-        instancia.addPaciente(new Paciente("Carla", "Alvarez", "25", "Femenino", new Sintoma("Calambre", 5)));
-        
-        Medico m1 = new Medico("Carlos", "Arellano", "Medicina General", "001");
-        Medico m2 = new Medico("Armando", "Paredes", "Traumatologo", "002");
-        
-        instancia.addMedico(m1);
-        instancia.addMedico(m2);
-        instancia.addPuesto(new Puesto("001", m1));
-        instancia.addPuesto(new Puesto("002", m2));
-        instancia.actualizarTurnos();
-        instancia.actualizarDatos();
     }
 }

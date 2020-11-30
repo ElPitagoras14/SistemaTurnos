@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.media.*;
 import javafx.util.Duration;
-import org.unique.Sintoma;
 
 /**
  *
@@ -48,6 +47,7 @@ public class VideoPlayer {
                 listaVideo.addLast(new Video(video));
             }
         } catch (Exception e) {
+            System.out.println("No se hallaron los videos");
         }
 
     }

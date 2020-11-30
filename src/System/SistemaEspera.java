@@ -73,6 +73,31 @@ public class SistemaEspera {
         actualizarTurnos();
     }
 
+    public String obtenerInfoPuestos() {
+        if (!listaPuesto.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Puesto p : listaPuesto) {
+                sb.append("Puesto: ");
+                sb.append(p.getIdPuesto());
+                sb.append(" - ");
+                if (p.isAtendiendo()) {
+                    sb.append("Atendiendo");
+                } else {
+                    sb.append("No atendiendo");
+                }
+                sb.append(" - ");
+                if (p.getMedicoA() != null) {
+                    sb.append(p.getMedicoA());
+                } else {
+                    sb.append("Sin Medico");
+                }
+                sb.append("\n");
+            }
+            return sb.toString();
+        }
+        return "No tiene puestos creados";
+    }
+
     public void actualizarTurnos() {
         for (Puesto p : listaPuesto) {
             if (!p.isAtendiendo() && p.isOcupado() && !colaPaciente.isEmpty()) {
@@ -116,7 +141,7 @@ public class SistemaEspera {
         listaPuesto.add(p);
         listaMedico.remove(p.getMedicoA());
     }
-    
+
     public boolean idPuestoDisponible(String id) {
         return obtenerPuesto(id) == null;
     }
